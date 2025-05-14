@@ -1,99 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login Page</title>
-  <style>
-    body {
-      background: #f2f2f2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    .login-container {
-      background: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      width: 300px;
-    }
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .login-container button {
-      width: 100%;
-      padding: 10px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .login-container button:hover {
-      background-color: #0056b3;
-    }
-    .login-container .message {
-      text-align: center;
-      margin-top: 15px;
-      font-size: 14px;
-      color: red;
-    }
-  </style>
+  <title>Firebase Add Data</title>
+  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-database.js"></script>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <div class="message" id="message"></div>
-  </div>
+  <h2>Add User to Firebase</h2>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="email" id="email" placeholder="Email" />
+  <button onclick="addUser()">Add User</button>
 
   <script>
-    // Array of valid users
-    const users = [
-      { username: "admin", password: "admin123" },
-      { username: "user1", password: "user123" },
-      { username: "guest", password: "guest123" }
-    ];
+    // Replace with your Firebase config
+    const firebaseConfig = {
+  apiKey: "AIzaSyDi7XmMGnpdcf5t3fOrgJktUeQoBiI0tpc",
+  authDomain: "huille-516d6.firebaseapp.com",
+  databaseURL: "https://huille-516d6-default-rtdb.firebaseio.com",
+  projectId: "huille-516d6",
+  storageBucket: "huille-516d6.firebasestorage.app",
+  messagingSenderId: "1042906609280",
+  appId: "1:1042906609280:web:05454047f763b3f68bd865"
+    };
 
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value;
+    // Add data function
+    function addUser() {
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
 
-      const userFound = users.find(user => user.username === username && user.password === password);
-
-      const messageEl = document.getElementById("message");
-
-      if (userFound) {
-        messageEl.style.color = "green";
-        messageEl.textContent = "Login successful!";
-        // Redirect or simulate dashboard access
-        setTimeout(() => {
-          window.location.href = "https://google.com"; // Replace with actual route
-        }, 1000);
-      } else {
-        messageEl.style.color = "red";
-        messageEl.textContent = "Invalid username or password.";
-      }
-    });
+      firebase.database().ref('users/').push({
+        username: username,
+        email: email
+      }).then(() => {
+        alert("User added!");
+      }).catch(error => {
+        console.error("Error adding user:", error);
+      });
+    }
   </script>
 </body>
 </html>
