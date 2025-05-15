@@ -1,47 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Firebase Add Data</title>
-  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-database.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Text</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .typewriter {
+      font-size: 2em;
+      border-right: 2px solid rgba(255, 255, 255, 0.25);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 3s steps(20, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    .fade-slide {
+      font-size: 1.8em;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlide 2s ease-out forwards;
+      animation-delay: 3.5s;
+    }
+
+    .glow {
+      font-size: 1.6em;
+      opacity: 0;
+      animation: glowFade 1s ease-in forwards, glowing 2s infinite alternate;
+      animation-delay: 6s;
+    }
+
+    .zoom-bounce {
+      font-size: 1.7em;
+      opacity: 0;
+      transform: scale(0.5);
+      animation: zoomBounce 2s ease-out forwards;
+      animation-delay: 8.5s;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 24ch; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes fadeSlide {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glowFade {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes glowing {
+      0% {
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        color: #fff;
+      }
+      100% {
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+        color: #fff;
+      }
+    }
+
+    @keyframes zoomBounce {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
 <body>
-  <h2>Add User to Firebase</h2>
-  <input type="text" id="username" placeholder="Phone or email" />
-  <input type="email" id="email" placeholder="Password" />
-  <button onclick="addUser()">Add User</button>
-
-  <script>
-    // Replace with your Firebase config
-    const firebaseConfig = {
-  apiKey: "AIzaSyDi7XmMGnpdcf5t3fOrgJktUeQoBiI0tpc",
-  authDomain: "huille-516d6.firebaseapp.com",
-  databaseURL: "https://huille-516d6-default-rtdb.firebaseio.com",
-  projectId: "huille-516d6",
-  storageBucket: "huille-516d6.firebasestorage.app",
-  messagingSenderId: "1042906609280",
-  appId: "1:1042906609280:web:05454047f763b3f68bd865",
-  measurementId: "G-Z43JE4XKLJ"
-    };
-
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    // Add data function
-    function addUser() {
-      const username = document.getElementById('username').value;
-      const email = document.getElementById('email').value;
-
-      firebase.database().ref('users/').push({
-        username: username,
-        email: email
-      }).then(() => {
-        alert("User added!");
-      }).catch(error => {
-        console.error("Error adding user:", error);
-      });
-    }
-  </script>
+  <div class="typewriter">Galois</div><br>
+  <div class="fade-slide">Dumakana</div><br>
+  <div class="glow">copyright by gls 💡</div><br>
+  <div class="zoom-bounce">tshek tshek</div>
 </body>
 </html>
