@@ -2,105 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Animated Text</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Mobile Page</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background-color: #121212;
-      color: #ffffff;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 1rem;
+    }
+
+    header {
+      background: #0077cc;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background: #005fa3;
+      padding: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+      gap: 1rem;
+      padding: 1rem 0;
     }
 
-    .typewriter {
-      font-size: 2em;
-      border-right: 2px solid rgba(255, 255, 255, 0.25);
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 3s steps(20, end) forwards, blink 0.7s step-end infinite;
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .fade-slide {
-      font-size: 1.8em;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeSlide 2s ease-out forwards;
-      animation-delay: 3.5s;
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
     }
 
-    .glow {
-      font-size: 1.6em;
-      opacity: 0;
-      animation: glowFade 1s ease-in forwards, glowing 2s infinite alternate;
-      animation-delay: 6s;
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #0077cc;
+      color: white;
+      margin-top: 2rem;
     }
 
-    .zoom-bounce {
-      font-size: 1.7em;
-      opacity: 0;
-      transform: scale(0.5);
-      animation: zoomBounce 2s ease-out forwards;
-      animation-delay: 8.5s;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 24ch; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    @keyframes fadeSlide {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
       }
-    }
-
-    @keyframes glowFade {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes glowing {
-      0% {
-        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-        color: #fff;
-      }
-      100% {
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
-        color: #fff;
-      }
-    }
-
-    @keyframes zoomBounce {
-      0% {
-        opacity: 0;
-        transform: scale(0.5);
-      }
-      60% {
-        opacity: 1;
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
+      .card {
+        flex: 1;
       }
     }
   </style>
 </head>
 <body>
-  <div class="typewriter">Galois</div><br>
-  <div class="fade-slide">Dumakana</div><br>
-  <div class="glow">copyright by gls 💡</div><br>
-  <div class="zoom-bounce">tshek tshek</div>
-</body>
-</html>
+
+  <header>
+    <h1>My Responsive Page</h1>
+    <p>Optimized for Mobile Devices</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h
