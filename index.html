@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Responsive Mobile Page</title>
+
+  <!-- Font Awesome CDN for social media icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-jQXc0pNw8E+9gGJ5a5NUbYVXz7+RSM+p4Q5pK+s6sN4OkVfF3PLzE1Erj0MGOG3csKvqqvLoUAtp0sG+jPfwHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     * {
       box-sizing: border-box;
@@ -33,10 +37,17 @@
       padding: 0.5rem;
     }
 
-    nav a {
+    nav button {
+      background: none;
+      border: none;
       color: white;
-      text-decoration: none;
       font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    nav button:hover {
+      text-decoration: underline;
     }
 
     .container {
@@ -67,10 +78,30 @@
       margin-top: 2rem;
     }
 
-    footer a {
+    .social-links {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
       color: white;
       text-decoration: none;
-      margin: 0 10px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .social-links a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links span {
+      color: white;
     }
 
     @media (min-width: 768px) {
@@ -91,9 +122,9 @@
   </header>
 
   <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <button onclick="navigateTo('index.html')">Home</button>
+    <button onclick="navigateTo('about.html')">About</button>
+    <button onclick="navigateTo('contact.html')">Contact</button>
   </nav>
 
   <div class="container">
@@ -111,12 +142,26 @@
 
   <footer>
     <p>&copy; 2025 My Website</p>
-    <div style="margin-top: 0.5rem;">
-      <a href="https://facebook.com" target="_blank">📘 Facebook</a>
-      <a href="https://twitter.com" target="_blank">🐦 Twitter</a>
-      <a href="https://instagram.com" target="_blank">📸 Instagram</a>
+    <div class="social-links">
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-facebook"></i> Facebook
+      </a>
+      <span>|</span>
+      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-twitter"></i> Twitter
+      </a>
+      <span>|</span>
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
     </div>
   </footer>
+
+  <script>
+    function navigateTo(link) {
+      window.location.href = link;
+    }
+  </script>
 
 </body>
 </html>
