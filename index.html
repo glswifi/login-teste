@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Responsive Mobile Page</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
   <style>
     :root {
       --bg: #f4f4f4;
@@ -107,27 +112,20 @@
       transform: translateX(-20px);
       animation: slideIn 0.4s ease forwards;
     }
-    .sidebar.active button:nth-child(1) { animation-delay: 0.1s; }
-    .sidebar.active button:nth-child(2) { animation-delay: 0.2s; }
-    .sidebar.active button:nth-child(3) { animation-delay: 0.3s; }
+    .sidebar.active button:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+    .sidebar.active button:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .sidebar.active button:nth-child(3) {
+      animation-delay: 0.3s;
+    }
     @keyframes slideIn {
       to {
         opacity: 1;
         transform: translateX(0);
       }
-    }
-    .dark-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 3rem;
-      background: none;
-      border: 2px solid white;
-      color: white;
-      border-radius: 20px;
-      padding: 0.3rem 0.7rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      z-index: 1001;
     }
     .container {
       display: flex;
@@ -187,72 +185,79 @@
         transform: none !important;
         animation: none !important;
       }
-      .dark-toggle {
-        position: fixed;
-      }
     }
   </style>
 </head>
-<body>
+<body class="dark">
+  <header>
+    <h1>My Responsive Page</h1>
+    <p>Optimized for Mobile Devices</p>
+  </header>
 
-<header>
-  <h1>My Responsive Page</h1>
-  <p>Optimized for Mobile Devices</p>
-</header>
-
-<div class="menu-bar">
-  <div class="logo">
-    <img src="https://via.placeholder.com/30" alt="Logo" />
+  <div class="menu-bar">
+    <div class="logo">
+      <img
+        src="https://via.placeholder.com/30"
+        alt="Logo"
+      />
+    </div>
+    <div class="menu-label">Menu</div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
   </div>
-  <div class="menu-label">Menu</div>
-  <div class="menu-toggle" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
+
+  <div class="sidebar" id="mobileMenu">
+    <button onclick="navigateTo('index.html')">Home</button>
+    <button onclick="navigateTo('about.html')">About</button>
+    <button onclick="navigateTo('contact.html')">Contact</button>
   </div>
-  <button class="dark-toggle" onclick="toggleDarkMode()">🌓</button>
-</div>
 
-<div class="sidebar" id="mobileMenu">
-  <button onclick="navigateTo('index.html')">Home</button>
-  <button onclick="navigateTo('about.html')">About</button>
-  <button onclick="navigateTo('contact.html')">Contact</button>
-</div>
-
-<div class="container">
-  <p>Welcome! Explore the content using the menu above.</p>
-
-  <img 
-    src="https://via.placeholder.com/800x400.webp" 
-    alt="Sample responsive image" 
-    style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" 
-    loading="lazy"
-  />
-</div>
-
-<footer>
-  <p>&copy; 2025 My Website</p>
-  <div class="social-links">
-    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-    <span>|</span>
-    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-    <span>|</span>
-    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+  <div class="container">
+    <img
+      src="https://via.placeholder.com/800x400.webp"
+      alt="Sample responsive image"
+      style="
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      "
+      loading="lazy"
+    />
   </div>
-</footer>
 
-<script>
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('active');
-  }
-  function navigateTo(link) {
-    document.getElementById('mobileMenu').classList.remove('active');
-    setTimeout(() => {
-      window.location.href = link;
-    }, 300);
-  }
-  function toggleDarkMode() {
-    document.body.classList.toggle('dark');
-  }
-</script>
+  <footer>
+    <p>&copy; 2025 My Website</p>
+    <div class="social-links">
+      <a
+        href="https://www.facebook.com/glssmarthome"
+        target="_blank"
+        ><i class="fab fa-facebook"></i> Facebook</a
+      >
+      <span>|</span>
+      <a href="https://www.tiktok.com" target="_blank"
+        ><i class="fab fa-tiktok"></i> TikTok</a
+      >
+      <span>|</span>
+      <a
+        href="https://www.instagram.com/gls.smarthome2022/"
+        target="_blank"
+        ><i class="fab fa-instagram"></i> Instagram</a
+      >
+    </div>
+  </footer>
 
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("active");
+    }
+    function navigateTo(link) {
+      document.getElementById("mobileMenu").classList.remove("active");
+      setTimeout(() => {
+        window.location.href = link;
+      }, 300);
+    }
+  </script>
 </body>
 </html>
