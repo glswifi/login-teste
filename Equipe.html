@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Our Team</title>
+  <title>Fixed Header and Footer</title>
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -27,17 +27,29 @@
       padding: 0;
     }
 
-    body {
+    html, body {
+      height: 100%;
       font-family: Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
     }
 
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
     header.menu-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--secondary);
+      color: white;
       padding: 1rem;
     }
 
@@ -48,16 +60,13 @@
     }
 
     header.menu-bar .menu-label {
-      color: white;
-      font-size: 1.1rem;
-      margin-left: 1rem;
       flex-grow: 1;
       text-align: center;
+      font-size: 1.2rem;
     }
 
     .menu-toggle {
       font-size: 1.5rem;
-      color: white;
       cursor: pointer;
     }
 
@@ -90,8 +99,15 @@
       cursor: pointer;
     }
 
+    main {
+      flex: 1;
+      padding: 80px 20px 80px; /* top and bottom padding to avoid overlap */
+      overflow-y: auto;
+    }
+
     .container {
-      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .team-section {
@@ -130,70 +146,39 @@
       margin-bottom: 1rem;
     }
 
-    .team-card h3 {
-      margin-bottom: 0.5rem;
-    }
-
-    .team-card p {
-      font-size: 0.95rem;
-    }
-
     footer {
-      text-align: center;
-      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
       background: var(--footer);
       color: white;
+      text-align: center;
+      padding: 1rem 0;
+      z-index: 1000;
     }
 
     .social-links {
       margin-top: 0.5rem;
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
       gap: 10px;
+      font-size: 0.95rem;
     }
 
     .social-links a {
       color: var(--social);
       text-decoration: none;
-      font-size: 1rem;
       display: flex;
       align-items: center;
       gap: 5px;
     }
 
-    .social-links a:hover {
-      text-decoration: underline;
-    }
-
-    @media (min-width: 768px) {
-      header.menu-bar {
-        display: none;
-      }
-
-      nav.sidebar {
-        position: static;
-        height: auto;
-        flex-direction: row;
-        justify-content: center;
-        background: var(--secondary);
-        padding: 0.5rem;
-        left: 0 !important;
-      }
-
-      nav.sidebar button {
-        font-size: 1rem;
-        margin: 0 1rem;
-      }
-
-      .team-cards {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-
-      .team-card {
-        flex: 1 1 calc(33.333% - 1rem);
-        margin: 0.5rem;
-      }
+    .social-links span {
+      font-weight: bold;
+      color: white;
     }
 
     .whatsapp-float {
@@ -218,8 +203,34 @@
       background-color: #1ebe57;
     }
 
-    .whatsapp-float i {
-      font-size: 24px;
+    @media (min-width: 768px) {
+      header.menu-bar {
+        display: none;
+      }
+
+      nav.sidebar {
+        position: static;
+        height: auto;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0.5rem;
+        left: 0 !important;
+      }
+
+      nav.sidebar button {
+        font-size: 1rem;
+        margin: 0 1rem;
+      }
+
+      .team-cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .team-card {
+        flex: 1 1 calc(33.333% - 1rem);
+        margin: 0.5rem;
+      }
     }
   </style>
 </head>
@@ -234,49 +245,47 @@
     </div>
   </header>
 
-  <nav class="sidebar" id="mobileMenu" aria-label="Mobile navigation">
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/MainPage')" aria-label="Navigate to Home">Home</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/AboutUs')" aria-label="Navigate to About">About</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/ContactUs')" aria-label="Navigate to Contact">Contact</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Services')" aria-label="Navigate to Services">Services</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Equipe')" aria-label="Navigate to Support">Equipe</button>
+  <nav class="sidebar" id="mobileMenu">
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/MainPage')">Home</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/AboutUs')">About</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/ContactUs')">Contact</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Services')">Services</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Equipe')">Equipe</button>
   </nav>
 
-  <main role="main">
-    <section class="container team-section">
-      <h2>Our Team</h2>
-      <div class="team-cards">
-        <div class="team-card">
-          <img src="https://via.placeholder.com/100" alt="Team Member" />
-          <h3>John Doe</h3>
-          <p>Founder & CEO</p>
+  <main>
+    <div class="container">
+      <section class="team-section">
+        <h2>Our Team</h2>
+        <div class="team-cards">
+          <div class="team-card">
+            <img src="https://via.placeholder.com/100" alt="Team Member" />
+            <h3>John Doe</h3>
+            <p>Founder & CEO</p>
+          </div>
+          <div class="team-card">
+            <img src="https://via.placeholder.com/100" alt="Team Member" />
+            <h3>Jane Smith</h3>
+            <p>Lead Technician</p>
+          </div>
+          <div class="team-card">
+            <img src="https://via.placeholder.com/100" alt="Team Member" />
+            <h3>Alex Johnson</h3>
+            <p>Support Manager</p>
+          </div>
         </div>
-        <div class="team-card">
-          <img src="https://via.placeholder.com/100" alt="Team Member" />
-          <h3>Jane Smith</h3>
-          <p>Lead Technician</p>
-        </div>
-        <div class="team-card">
-          <img src="https://via.placeholder.com/100" alt="Team Member" />
-          <h3>Alex Johnson</h3>
-          <p>Support Manager</p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 My Website</p>
     <div class="social-links">
-      <a href="https://www.facebook.com/glssmarthome" target="_blank" rel="noopener">
-        <i class="fab fa-facebook"></i> Facebook
-      </a>
-      <a href="https://www.tiktok.com" target="_blank" rel="noopener">
-        <i class="fab fa-tiktok"></i> TikTok
-      </a>
-      <a href="https://www.instagram.com/gls.smarthome2022/" target="_blank" rel="noopener">
-        <i class="fab fa-instagram"></i> Instagram
-      </a>
+      <a href="https://www.facebook.com/glssmarthome" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+      <span>|</span>
+      <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+      <span>|</span>
+      <a href="https://www.instagram.com/gls.smarthome2022/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
     </div>
   </footer>
 
@@ -285,7 +294,6 @@
     target="_blank"
     class="whatsapp-float"
     aria-label="Chat on WhatsApp"
-    rel="noopener"
   >
     <i class="fab fa-whatsapp"></i>
   </a>
