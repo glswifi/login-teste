@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox and Multiple Choice Example</title>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Get values (optional for later use)
+            const subscribeChecked = document.getElementById('subscribe').checked;
+            const selectedLanguage = document.querySelector('input[name="language"]:checked');
+
+            // Output values to console (just for checking)
+            console.log("Subscribe to newsletter: " + subscribeChecked);
+            console.log("Selected Language: " + (selectedLanguage ? selectedLanguage.value : 'None'));
+
+            // Redirect after form submission
+            window.location.href = "https://www.example.com";  // Replace with your desired URL
+        }
+    </script>
+</head>
+<body>
+    <h1>Form with Checkbox and Multiple Choice</h1>
+
+    <form id="myForm" onsubmit="handleSubmit(event)">
+        <!-- Checkbox -->
+        <label for="subscribe">
+            <input type="checkbox" id="subscribe" name="subscribe">
+            Subscribe to our newsletter
+        </label>
+        <br><br>
+
+        <!-- Multiple Choice (Radio Buttons) -->
+        <p>Choose your preferred programming language:</p>
+        <label>
+            <input type="radio" name="language" value="html"> HTML
+        </label><br>
+        <label>
+            <input type="radio" name="language" value="css"> CSS
+        </label><br>
+        <label>
+            <input type="radio" name="language" value="javascript"> JavaScript
+        </label><br>
+        <label>
+            <input type="radio" name="language" value="python"> Python
+        </label><br>
+
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
