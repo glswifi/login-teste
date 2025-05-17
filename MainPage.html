@@ -10,6 +10,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <meta name="theme-color" content="#1565c0" />
   <style>
     :root {
       --bg: #121212;
@@ -25,13 +26,12 @@
       margin: 0;
       padding: 0;
     }
-   body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #121212;
-  transition: background-color 0.3s, color 0.3s;
-}
-
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #121212;
+      transition: background-color 0.3s, color 0.3s;
+    }
     header.menu-bar {
       display: flex;
       justify-content: space-between;
@@ -115,6 +115,12 @@
     nav.sidebar.active button:nth-child(3) {
       animation-delay: 0.3s;
     }
+    nav.sidebar.active button:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+    nav.sidebar.active button:nth-child(5) {
+      animation-delay: 0.5s;
+    }
     @keyframes slideIn {
       to {
         opacity: 1;
@@ -180,8 +186,6 @@
         animation: none !important;
       }
     }
-
-    /* WhatsApp floating button */
     .whatsapp-float {
       position: fixed;
       top: 75%;
@@ -206,8 +210,6 @@
     .whatsapp-float i {
       font-size: 24px;
     }
-
-    /* Image styling moved from inline */
     .responsive-img {
       max-width: 100%;
       height: auto;
@@ -222,18 +224,20 @@
       <img src="https://via.placeholder.com/30" alt="Logo" />
     </div>
     <div class="menu-label">Menu</div>
-    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">
+    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
       <i class="fas fa-bars"></i>
     </div>
   </header>
 
   <nav class="sidebar" id="mobileMenu" aria-label="Mobile navigation">
-    <button onclick="navigateTo('index.html')" aria-label="Navigate to Home">Home</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin-contact-us/')" aria-label="Navigate to About">About</button>
-    <button onclick="navigateTo('contact.html')" aria-label="Navigate to Contact">Contact</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/MainPage')" aria-label="Navigate to Home">Home</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/AboutUs')" aria-label="Navigate to About">About</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/ContactUs')" aria-label="Navigate to Contact">Contact</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Services')" aria-label="Navigate to Services">Services</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Support')" aria-label="Navigate to Support">Support</button>
   </nav>
 
-  <main>
+  <main role="main">
     <section class="container">
       <img
         src="https://help.ui.com/hc/article_attachments/1500020265401/protect.network.topology.graphic.png"
@@ -241,18 +245,12 @@
         class="responsive-img"
         loading="lazy"
       />
-    </section>
-
-    <section class="container">
       <img
         src="https://www.antennadirect.com.au/wp-content/uploads/2022/10/Starlink-ethernet-adapter.png"
         alt="Starlink Ethernet Adapter"
         class="responsive-img"
         loading="lazy"
       />
-    </section>
-
-    <section class="container">
       <img
         src="https://512pixels.net/wp-content/uploads/2025/01/Unifi-Network-2025-01.jpg"
         alt="Unifi Network Overview"
@@ -279,7 +277,6 @@
     </div>
   </footer>
 
-  <!-- WhatsApp floating button -->
   <a
     href="https://wa.me/1234567890"
     target="_blank"
@@ -292,8 +289,12 @@
 
   <script>
     function toggleMenu() {
-      document.getElementById("mobileMenu").classList.toggle("active");
+      const menu = document.getElementById("mobileMenu");
+      const toggle = document.querySelector(".menu-toggle");
+      menu.classList.toggle("active");
+      toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
     }
+
     function navigateTo(link) {
       document.getElementById("mobileMenu").classList.remove("active");
       setTimeout(() => {
@@ -301,19 +302,17 @@
       }, 300);
     }
 
-    // Close sidebar when clicking outside
     document.addEventListener('click', function(event) {
       const sidebar = document.getElementById("mobileMenu");
       const toggle = document.querySelector(".menu-toggle");
       const clickedInsideSidebar = sidebar.contains(event.target);
       const clickedToggle = toggle.contains(event.target);
-
       if (!clickedInsideSidebar && !clickedToggle && sidebar.classList.contains("active")) {
         sidebar.classList.remove("active");
+        toggle.setAttribute("aria-expanded", "false");
       }
     });
 
-    // Keyboard accessibility for menu toggle (Enter and Space)
     document.querySelector('.menu-toggle').addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
