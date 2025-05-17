@@ -38,7 +38,6 @@
       flex-direction: column;
     }
 
-    /* Fixed header */
     header.menu-bar {
       position: fixed;
       top: 0;
@@ -91,37 +90,38 @@
       outline-offset: 2px;
     }
 
-    /* Fixed footer */
     footer {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 50px;
       background: #1565c0;
       color: var(--text);
-      text-align: center;
-      line-height: 50px;
       z-index: 1000;
-      padding: 0 1rem;
+      padding: 0.5rem 1rem;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
     }
 
     .social-links {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
     }
 
     .social-links a {
       color: var(--text);
       text-decoration: none;
-      font-size: 1rem;
       display: flex;
       align-items: center;
       gap: 5px;
@@ -132,10 +132,9 @@
     }
 
     .social-links span {
-      color: var(--text);
+      display: none;
     }
 
-    /* Sidebar nav with new background */
     nav.sidebar {
       position: fixed;
       top: 60px;
@@ -195,10 +194,9 @@
       }
     }
 
-    /* Main scrollable content */
     main {
       padding-top: 60px;
-      padding-bottom: 50px;
+      padding-bottom: 100px;
       overflow-y: auto;
       flex-grow: 1;
       min-height: 0;
@@ -319,6 +317,17 @@
       .highlight-card {
         flex: 1;
         margin: 0 0.5rem;
+      }
+
+      footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 2rem;
+      }
+
+      .social-links span {
+        display: inline;
       }
     }
   </style>
