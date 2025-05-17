@@ -65,6 +65,10 @@
     .menu-toggle:hover {
       transform: scale(1.1);
     }
+    .menu-toggle:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
     nav.sidebar {
       position: fixed;
       top: 0;
@@ -97,6 +101,10 @@
       opacity: 0;
       transform: translateX(-20px);
       animation: slideIn 0.4s ease forwards;
+    }
+    nav.sidebar button:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
     }
     nav.sidebar.active button:nth-child(1) {
       animation-delay: 0.1s;
@@ -221,7 +229,7 @@
 
   <nav class="sidebar" id="mobileMenu" aria-label="Mobile navigation">
     <button onclick="navigateTo('index.html')" aria-label="Navigate to Home">Home</button>
-    <button onclick="navigateTo('about.html')" aria-label="Navigate to About">About</button>
+    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin-contact-us/')" aria-label="Navigate to About">About</button>
     <button onclick="navigateTo('contact.html')" aria-label="Navigate to Contact">Contact</button>
   </nav>
 
@@ -302,6 +310,14 @@
 
       if (!clickedInsideSidebar && !clickedToggle && sidebar.classList.contains("active")) {
         sidebar.classList.remove("active");
+      }
+    });
+
+    // Keyboard accessibility for menu toggle (Enter and Space)
+    document.querySelector('.menu-toggle').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
       }
     });
   </script>
