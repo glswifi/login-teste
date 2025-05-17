@@ -12,13 +12,13 @@
   />
   <style>
     :root {
-      --bg: #121212;
-      --text: #e0e0e0;
+      --bg: #ffffff;
+      --text: #121212;
       --primary: #1e88e5;
-      --secondary: #1565c0;
-      --card: #1e1e1e;
-      --footer: #1e88e5;
-      --social: #ffffff;
+      --secondary: #f0f0f0;
+      --card: #f9f9f9;
+      --footer: #f1f1f1;
+      --social: #121212;
     }
 
     * {
@@ -29,8 +29,8 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #121212;
+      background-color: var(--bg);
+      color: var(--text);
       transition: background-color 0.3s, color 0.3s;
     }
 
@@ -55,7 +55,7 @@
     }
 
     header.menu-bar .menu-label {
-      color: white;
+      color: var(--text);
       font-size: 1.1rem;
       margin-left: 1rem;
       flex-grow: 1;
@@ -64,7 +64,7 @@
 
     .menu-toggle {
       font-size: 1.5rem;
-      color: white;
+      color: var(--text);
       cursor: pointer;
       transition: transform 0.3s ease;
     }
@@ -85,7 +85,7 @@
       width: 250px;
       height: 100%;
       background: var(--secondary);
-      color: white;
+      color: var(--text);
       padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
@@ -105,7 +105,7 @@
     nav.sidebar button {
       background: none;
       border: none;
-      color: white;
+      color: var(--text);
       font-size: 1.2rem;
       text-align: left;
       cursor: pointer;
@@ -144,7 +144,7 @@
       text-align: center;
       padding: 1rem;
       background: var(--footer);
-      color: white;
+      color: var(--text);
       margin-top: 2rem;
     }
 
@@ -200,7 +200,6 @@
       }
     }
 
-    /* WhatsApp floating button */
     .whatsapp-float {
       position: fixed;
       top: 75%;
@@ -233,7 +232,7 @@
       padding: 2rem;
       border-radius: 12px;
       color: var(--text);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     .about-section h2 {
@@ -254,11 +253,12 @@
     }
 
     .highlight-card {
-      background-color: #292929;
+      background-color: #ffffff;
       padding: 1rem;
       border-radius: 10px;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      color: var(--text);
     }
 
     .highlight-card i {
@@ -268,7 +268,7 @@
 
     .highlight-card h4 {
       margin-bottom: 0.5rem;
-      color: #ffffff;
+      color: var(--text);
     }
 
     @media (min-width: 768px) {
@@ -284,14 +284,14 @@
     }
   </style>
 </head>
-<body class="white">
+<body>
   <header class="menu-bar" role="banner">
     <div class="logo">
-      <img src="https://via.placeholder.com/30" alt="Logo" />
+      <img src="https://via.placeholder.com/30" alt="Logo" loading="lazy" />
     </div>
     <div class="menu-label">Menu</div>
     <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">
-      <i class="fas fa-bars"></i>
+      <i class="fas fa-bars" aria-hidden="true"></i>
     </div>
   </header>
 
@@ -302,7 +302,6 @@
     <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Services')" aria-label="Navigate to Services">Services</button>
     <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Equipe')" aria-label="Navigate to Support">Equipe</button>
   </nav>
-
 
   <main role="main">
     <section class="container about-section">
@@ -316,17 +315,17 @@
 
       <div class="about-highlights">
         <div class="highlight-card">
-          <i class="fas fa-wifi fa-2x"></i>
+          <i class="fas fa-wifi fa-2x" aria-hidden="true"></i>
           <h4>Advanced Wi-Fi</h4>
           <p>Deploying Unifi and Starlink for ultra-fast, secure wireless networks.</p>
         </div>
         <div class="highlight-card">
-          <i class="fas fa-cogs fa-2x"></i>
+          <i class="fas fa-cogs fa-2x" aria-hidden="true"></i>
           <h4>Custom Solutions</h4>
           <p>Every home or business gets a tailored system based on your needs.</p>
         </div>
         <div class="highlight-card">
-          <i class="fas fa-headset fa-2x"></i>
+          <i class="fas fa-headset fa-2x" aria-hidden="true"></i>
           <h4>Reliable Support</h4>
           <p>Our experts are always ready to help you get the most out of your setup.</p>
         </div>
@@ -338,15 +337,15 @@
     <p>&copy; 2025 My Website</p>
     <div class="social-links">
       <a href="https://www.facebook.com/glssmarthome" target="_blank" rel="noopener">
-        <i class="fab fa-facebook"></i> Facebook
+        <i class="fab fa-facebook" aria-hidden="true"></i> Facebook
       </a>
       <span>|</span>
       <a href="https://www.tiktok.com" target="_blank" rel="noopener">
-        <i class="fab fa-tiktok"></i> TikTok
+        <i class="fab fa-tiktok" aria-hidden="true"></i> TikTok
       </a>
       <span>|</span>
       <a href="https://www.instagram.com/gls.smarthome2022/" target="_blank" rel="noopener">
-        <i class="fab fa-instagram"></i> Instagram
+        <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
       </a>
     </div>
   </footer>
@@ -358,7 +357,7 @@
     class="whatsapp-float"
     aria-label="Chat on WhatsApp"
   >
-    <i class="fab fa-whatsapp"></i>
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
 
   <script>
@@ -393,4 +392,3 @@
   </script>
 </body>
 </html>
-
