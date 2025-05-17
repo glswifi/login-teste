@@ -186,6 +186,32 @@
         animation: none !important;
       }
     }
+
+    /* WhatsApp floating button */
+    .whatsapp-float {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      z-index: 10000;
+    }
+    .whatsapp-float:hover {
+      background-color: #1ebe57;
+    }
+    .whatsapp-float i {
+      font-size: 24px;
+    }
   </style>
 </head>
 <body class="dark">
@@ -230,9 +256,7 @@
   <footer>
     <p>&copy; 2025 My Website</p>
     <div class="social-links">
-      <a
-        href="https://www.facebook.com/glssmarthome"
-        target="_blank"
+      <a href="https://www.facebook.com/glssmarthome" target="_blank"
         ><i class="fab fa-facebook"></i> Facebook</a
       >
       <span>|</span>
@@ -240,13 +264,22 @@
         ><i class="fab fa-tiktok"></i> TikTok</a
       >
       <span>|</span>
-      <a
-        href="https://www.instagram.com/gls.smarthome2022/"
-        target="_blank"
+      <a href="https://www.instagram.com/gls.smarthome2022/" target="_blank"
         ><i class="fab fa-instagram"></i> Instagram</a
       >
     </div>
   </footer>
+
+  <!-- WhatsApp floating button -->
+  <a
+    href="https://wa.me/1234567890"
+    target="_blank"
+    rel="noopener"
+    class="whatsapp-float"
+    aria-label="Chat on WhatsApp"
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <script>
     function toggleMenu() {
