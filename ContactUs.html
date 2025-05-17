@@ -21,34 +21,45 @@
       --footer: #1e88e5;
       --social: #ffffff;
     }
-    * {
-      box-sizing: border-box;
+    html, body {
       margin: 0;
       padding: 0;
-    }
-    body {
+      height: 100%;
       font-family: Arial, sans-serif;
       background-color: #ffffff;
       color: #121212;
-      transition: background-color 0.3s, color 0.3s;
     }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
     header.menu-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--secondary);
-      padding: 1rem;
-      position: relative;
+      padding: 0 1rem;
+      z-index: 1000;
     }
+
     header.menu-bar .logo img {
       width: 30px;
       height: 30px;
       border-radius: 5px;
       transition: transform 0.3s ease;
     }
+
     header.menu-bar .logo img:hover {
       transform: rotate(5deg) scale(1.05);
     }
+
     header.menu-bar .menu-label {
       color: white;
       font-size: 1.1rem;
@@ -56,19 +67,23 @@
       flex-grow: 1;
       text-align: center;
     }
+
     .menu-toggle {
       font-size: 1.5rem;
       color: white;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
+
     .menu-toggle:hover {
       transform: scale(1.1);
     }
+
     .menu-toggle:focus {
       outline: 2px solid var(--primary);
       outline-offset: 2px;
     }
+
     nav.sidebar {
       position: fixed;
       top: 0;
@@ -86,11 +101,13 @@
       opacity: 0;
       transform: scale(0.95);
     }
+
     nav.sidebar.active {
       left: 0;
       opacity: 1;
       transform: scale(1);
     }
+
     nav.sidebar button {
       background: none;
       border: none;
@@ -102,24 +119,12 @@
       transform: translateX(-20px);
       animation: slideIn 0.4s ease forwards;
     }
-    nav.sidebar button:focus {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }nav.sidebar.active button:nth-child(1) {
-  animation-delay: 0.1s;
-}
-nav.sidebar.active button:nth-child(2) {
-  animation-delay: 0.2s;
-}
-nav.sidebar.active button:nth-child(3) {
-  animation-delay: 0.3s;
-}
-nav.sidebar.active button:nth-child(4) {
-  animation-delay: 0.4s;
-}
-nav.sidebar.active button:nth-child(5) {
-  animation-delay: 0.5s;
-}
+
+    nav.sidebar.active button:nth-child(1) { animation-delay: 0.1s; }
+    nav.sidebar.active button:nth-child(2) { animation-delay: 0.2s; }
+    nav.sidebar.active button:nth-child(3) { animation-delay: 0.3s; }
+    nav.sidebar.active button:nth-child(4) { animation-delay: 0.4s; }
+    nav.sidebar.active button:nth-child(5) { animation-delay: 0.5s; }
 
     @keyframes slideIn {
       to {
@@ -127,20 +132,31 @@ nav.sidebar.active button:nth-child(5) {
         transform: translateX(0);
       }
     }
+
+    main {
+      flex: 1 0 auto;
+      padding: 70px 1rem 80px; /* top padding for fixed header, bottom for footer */
+      overflow-y: auto;
+    }
+
     .container {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      padding: 1rem;
-      margin-top: 1rem;
     }
+
     footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
       text-align: center;
       padding: 1rem;
       background: var(--footer);
       color: white;
-      margin-top: 2rem;
+      z-index: 1000;
     }
+
     .social-links {
       margin-top: 0.5rem;
       display: flex;
@@ -149,6 +165,7 @@ nav.sidebar.active button:nth-child(5) {
       gap: 10px;
       flex-wrap: wrap;
     }
+
     .social-links a {
       color: var(--social);
       text-decoration: none;
@@ -157,12 +174,15 @@ nav.sidebar.active button:nth-child(5) {
       align-items: center;
       gap: 5px;
     }
+
     .social-links a:hover {
       text-decoration: underline;
     }
+
     .social-links span {
       color: var(--social);
     }
+
     @media (min-width: 768px) {
       header.menu-bar {
         display: none;
@@ -186,6 +206,7 @@ nav.sidebar.active button:nth-child(5) {
         animation: none !important;
       }
     }
+
     .whatsapp-float {
       position: fixed;
       top: 75%;
@@ -204,17 +225,42 @@ nav.sidebar.active button:nth-child(5) {
       transition: background-color 0.3s ease;
       z-index: 10000;
     }
+
     .whatsapp-float:hover {
       background-color: #1ebe57;
     }
+
     .whatsapp-float i {
       font-size: 24px;
     }
+
     .responsive-img {
       max-width: 100%;
       height: auto;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-form button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .contact-form button:hover {
+      background-color: var(--secondary);
     }
   </style>
 </head>
@@ -237,28 +283,26 @@ nav.sidebar.active button:nth-child(5) {
     <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Equipe')" aria-label="Navigate to Support">Equipe</button>
   </nav>
 
-<main role="main">
-  <section class="container contact-section">
-    <h2>Contact Us</h2>
-    <p>If you have any questions or would like more information about our services, feel free to reach out to us!</p>
+  <main role="main">
+    <section class="container contact-section">
+      <h2>Contact Us</h2>
+      <p>If you have any questions or would like more information about our services, feel free to reach out to us!</p>
+      <div class="contact-details">
+        <p><i class="fas fa-envelope"></i> <a href="mailto:support@glssmarthome.com">support@glssmarthome.com</a></p>
+        <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 234 567 890</a></p>
+        <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/1234567890" target="_blank">Chat on WhatsApp</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Smart City, SC 45678</p>
+      </div>
 
-    <div class="contact-details">
-      <p><i class="fas fa-envelope"></i> <a href="mailto:support@glssmarthome.com">support@glssmarthome.com</a></p>
-      <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 234 567 890</a></p>
-      <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/1234567890" target="_blank">Chat on WhatsApp</a></p>
-      <p><i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Smart City, SC 45678</p>
-    </div>
-
-    <h3>Send Us a Message</h3>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-</main>
-
+      <h3>Send Us a Message</h3>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
 
   <footer role="contentinfo">
     <p>&copy; 2025 My Website</p>
@@ -305,11 +349,11 @@ nav.sidebar.active button:nth-child(5) {
     document.addEventListener('click', function(event) {
       const sidebar = document.getElementById("mobileMenu");
       const toggle = document.querySelector(".menu-toggle");
-      const clickedInsideSidebar = sidebar.contains(event.target);
-      const clickedToggle = toggle.contains(event.target);
-      if (!clickedInsideSidebar && !clickedToggle && sidebar.classList.contains("active")) {
-        sidebar.classList.remove("active");
-        toggle.setAttribute("aria-expanded", "false");
+      if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
+        if (sidebar.classList.contains("active")) {
+          sidebar.classList.remove("active");
+          toggle.setAttribute("aria-expanded", "false");
+        }
       }
     });
 
