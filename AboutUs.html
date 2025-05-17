@@ -12,12 +12,12 @@
   />
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #ffffff;
+      --bg: #121212;
+      --text: #e0e0e0;
       --primary: #1e88e5;
-      --secondary: #f0f0f0;
-      --card: #f9f9f9;
-      --footer: #1565c0;
+      --secondary: #1565c0;
+      --card: #1e1e1e;
+      --footer: #1e88e5;
       --social: #ffffff;
     }
 
@@ -29,13 +29,10 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: var(--bg);
+      background-color: #ffffff;
       color: #121212;
-      transition: background-color 0.3s, color 0.3s;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      padding-top: 60px; /* height of fixed header */
+      padding-bottom: 60px; /* height of fixed footer */
     }
 
     header.menu-bar {
@@ -43,31 +40,23 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 60px;
-      background: #1565c0;
-      padding: 0 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: var(--secondary);
+      padding: 1rem;
       z-index: 1000;
-      transition: background-color 0.3s ease;
-      color: var(--text);
+      height: 60px;
     }
 
     header.menu-bar .logo img {
       width: 30px;
       height: 30px;
       border-radius: 5px;
-      transition: transform 0.3s ease;
-      filter: brightness(0) invert(1);
-    }
-
-    header.menu-bar .logo img:hover {
-      transform: rotate(5deg) scale(1.05);
     }
 
     header.menu-bar .menu-label {
-      color: var(--text);
+      color: white;
       font-size: 1.1rem;
       margin-left: 1rem;
       flex-grow: 1;
@@ -76,18 +65,87 @@
 
     .menu-toggle {
       font-size: 1.5rem;
-      color: var(--text);
+      color: white;
       cursor: pointer;
-      transition: transform 0.3s ease;
     }
 
-    .menu-toggle:hover {
-      transform: scale(1.1);
+    nav.sidebar {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 250px;
+      height: 100%;
+      background: var(--secondary);
+      color: white;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+      transition: left 0.4s ease;
     }
 
-    .menu-toggle:focus {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
+    nav.sidebar.active {
+      left: 0;
+    }
+
+    nav.sidebar button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .services-section {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      color: #121212;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      
+    }
+
+    .services-section h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .service-card {
+  background-color: #5AEDEB;
+  color: black !important; /* Use !important to override */
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+
+    .service-card i {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .service-card p {
+      color: var(--text);
+      line-height: 1.5;
     }
 
     footer {
@@ -95,33 +153,26 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: #1565c0;
-      color: var(--text);
-      z-index: 1000;
-      padding: 0.5rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
       text-align: center;
-    }
-
-    footer p {
-      margin: 0;
-      font-size: 0.9rem;
+      padding: 1rem;
+      background: var(--footer);
+      color: white;
+      z-index: 1000;
+      height: 60px;
     }
 
     .social-links {
+      margin-top: 0.5rem;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .social-links a {
-      color: var(--text);
+      color: var(--social);
       text-decoration: none;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       gap: 5px;
@@ -131,83 +182,35 @@
       text-decoration: underline;
     }
 
-    .social-links span {
-      display: none;
-    }
-
-    nav.sidebar {
-      position: fixed;
-      top: 60px;
-      left: -100%;
-      width: 250px;
-      height: calc(100% - 60px);
-      background: #1565c0;
-      color: var(--text);
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 999;
-      transition: left 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-      opacity: 0;
-      transform: scale(0.95);
-    }
-
-    nav.sidebar.active {
-      left: 0;
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    nav.sidebar button {
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.2rem;
-      text-align: left;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateX(-20px);
-      animation: slideIn 0.4s ease forwards;
-      transition: color 0.3s ease;
-    }
-
-    nav.sidebar button:hover {
-      color: #a8cdf1;
-    }
-
-    nav.sidebar button:focus {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }
-
-    nav.sidebar.active button:nth-child(1) { animation-delay: 0.1s; }
-    nav.sidebar.active button:nth-child(2) { animation-delay: 0.2s; }
-    nav.sidebar.active button:nth-child(3) { animation-delay: 0.3s; }
-    nav.sidebar.active button:nth-child(4) { animation-delay: 0.4s; }
-    nav.sidebar.active button:nth-child(5) { animation-delay: 0.5s; }
-
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
+    @media (min-width: 768px) {
+      header.menu-bar {
+        display: none;
       }
-    }
 
-    main {
-      padding-top: 60px;
-      padding-bottom: 100px;
-      overflow-y: auto;
-      flex-grow: 1;
-      min-height: 0;
-    }
+      nav.sidebar {
+        position: static;
+        height: auto;
+        flex-direction: row;
+        justify-content: center;
+        background: var(--secondary);
+        padding: 0.5rem;
+        left: 0 !important;
+      }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem;
-      margin-top: 1rem;
+      nav.sidebar button {
+        font-size: 1rem;
+        margin: 0 1rem;
+      }
+
+      .service-cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .service-card {
+        flex: 1 1 calc(33.333% - 1rem);
+        margin: 0.5rem;
+      }
     }
 
     .whatsapp-float {
@@ -224,8 +227,7 @@
       justify-content: center;
       align-items: center;
       text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       z-index: 10000;
     }
 
@@ -236,116 +238,16 @@
     .whatsapp-float i {
       font-size: 24px;
     }
-
-    .about-section {
-      background-color: var(--card);
-      padding: 2rem;
-      border-radius: 12px;
-      color: #121212;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    .about-section h2 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .about-section p {
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .about-highlights {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .highlight-card {
-      background-color: #5AEDEB;
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      color: #121212;
-    }
-
-    .highlight-card i {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .highlight-card h4 {
-      margin-bottom: 0.5rem;
-      color: #121212;
-    }
-
-    @media (min-width: 768px) {
-      header.menu-bar {
-        display: none;
-      }
-
-      nav.sidebar {
-        position: static;
-        height: auto;
-        flex-direction: row;
-        justify-content: center;
-        background: var(--secondary);
-        padding: 0.5rem;
-        left: 0 !important;
-        opacity: 1 !important;
-        transform: none !important;
-        height: auto !important;
-        color: #121212;
-      }
-
-      nav.sidebar button {
-        font-size: 1rem;
-        margin: 0 1rem;
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-        color: #121212;
-      }
-
-      .about-highlights {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .highlight-card {
-        flex: 1;
-        margin: 0 0.5rem;
-      }
-
-      footer {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 2rem;
-      }
-
-      .social-links span {
-        display: inline;
-      }
-    }
   </style>
 </head>
 <body>
-  <header class="menu-bar" role="banner">
+  <header class="menu-bar">
     <div class="logo">
-      <img src="https://via.placeholder.com/30" alt="Logo" loading="lazy" />
+      <img src="https://via.placeholder.com/30" alt="Logo" />
     </div>
     <div class="menu-label">Menu</div>
-    <div
-      class="menu-toggle"
-      onclick="toggleMenu()"
-      aria-label="Toggle menu"
-      role="button"
-      tabindex="0"
-    >
-      <i class="fas fa-bars" aria-hidden="true"></i>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
     </div>
   </header>
 
@@ -358,49 +260,49 @@
   </nav>
 
   <main role="main">
-    <section class="container about-section">
-      <br>
-      <h2>About Us</h2>
-      <p>
-        At GLS Smart Home, we specialize in creating seamless and secure networking solutions for modern homes and businesses. Our mission is to make advanced smart home technology accessible, reliable, and easy to use.
-      </p>
-      <p>
-        With a passion for innovation, we partner with industry leaders like Ubiquiti and Starlink to provide high-performance wireless and wired networking systems.
-      </p>
-
-      <div class="about-highlights">
-        <div class="highlight-card">
-          <i class="fas fa-wifi fa-2x" aria-hidden="true"></i>
-          <h4>Advanced Wi-Fi</h4>
-          <p>Deploying Unifi and Starlink for ultra-fast, secure wireless networks.</p>
+    <section class="container services-section">
+      <h2>Our Services</h2>
+      <div class="service-cards">
+        <div class="service-card">
+          <i class="fas fa-network-wired"></i>
+          <h3>Network Installation</h3>
+          <p>Professional installation of high-speed wired and wireless networks tailored to your needs.</p>
         </div>
-        <div class="highlight-card">
-          <i class="fas fa-cogs fa-2x" aria-hidden="true"></i>
-          <h4>Custom Solutions</h4>
-          <p>Every home or business gets a tailored system based on your needs.</p>
+        <div class="service-card">
+          <i class="fas fa-satellite-dish"></i>
+          <h3>Starlink Integration</h3>
+          <p>Enhance your connectivity with Starlink satellite internet setup and optimization.</p>
         </div>
-        <div class="highlight-card">
-          <i class="fas fa-headset fa-2x" aria-hidden="true"></i>
-          <h4>Reliable Support</h4>
-          <p>Our experts are always ready to help you get the most out of your setup.</p>
+        <div class="service-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Security Systems</h3>
+          <p>Smart security camera installations, alarms, and home surveillance systems for peace of mind.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-home"></i>
+          <h3>Smart Home Setup</h3>
+          <p>Automate your home with smart lights, thermostats, sensors, and integrated controls.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-tools"></i>
+          <h3>Maintenance & Support</h3>
+          <p>Ongoing technical support, troubleshooting, and system upgrades to keep things running smoothly.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer role="contentinfo">
+  <footer>
     <p>&copy; 2025 My Website</p>
     <div class="social-links">
-      <a href="https://www.facebook.com/glssmarthome" target="_blank" rel="noopener">
-        <i class="fab fa-facebook" aria-hidden="true"></i> Facebook
+      <a href="https://www.facebook.com/glssmarthome" target="_blank">
+        <i class="fab fa-facebook"></i> Facebook
       </a>
-      <span>|</span>
-      <a href="https://www.tiktok.com" target="_blank" rel="noopener">
-        <i class="fab fa-tiktok" aria-hidden="true"></i> TikTok
+      <a href="https://www.tiktok.com" target="_blank">
+        <i class="fab fa-tiktok"></i> TikTok
       </a>
-      <span>|</span>
-      <a href="https://www.instagram.com/gls.smarthome2022/" target="_blank" rel="noopener">
-        <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+      <a href="https://www.instagram.com/gls.smarthome2022/" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram
       </a>
     </div>
   </footer>
@@ -408,11 +310,10 @@
   <a
     href="https://wa.me/1234567890"
     target="_blank"
-    rel="noopener"
     class="whatsapp-float"
     aria-label="Chat on WhatsApp"
   >
-    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    <i class="fab fa-whatsapp"></i>
   </a>
 
   <script>
@@ -427,21 +328,11 @@
       }, 300);
     }
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener("click", function (event) {
       const sidebar = document.getElementById("mobileMenu");
       const toggle = document.querySelector(".menu-toggle");
-      const clickedInsideSidebar = sidebar.contains(event.target);
-      const clickedToggle = toggle.contains(event.target);
-
-      if (!clickedInsideSidebar && !clickedToggle && sidebar.classList.contains("active")) {
+      if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
         sidebar.classList.remove("active");
-      }
-    });
-
-    document.querySelector('.menu-toggle').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMenu();
       }
     });
   </script>
