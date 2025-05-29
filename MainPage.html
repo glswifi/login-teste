@@ -3,350 +3,255 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Responsive Mobile Page</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-  <meta name="theme-color" content="#1565c0" />
+  <title>Store Collections</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    :root {
-      --bg: #121212;
-      --text: #e0e0e0;
-      --primary: #1e88e5;
-      --secondary: #1565c0;
-      --card: #1e1e1e;
-      --footer: #1e88e5;
-      --social: #ffffff;
-    }
-
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #121212;
-      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+      background-color: #f9f9f9;
       padding-top: 60px;
-      padding-bottom: 80px; /* space for fixed footer */
+      display: flex;
     }
 
-    header.menu-bar {
+    /* Fixed header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background: var(--secondary);
-      padding: 1rem;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    header.menu-bar .logo img {
-      width: 30px;
-      height: 30px;
-      border-radius: 5px;
-      transition: transform 0.3s ease;
-    }
-
-    header.menu-bar .logo img:hover {
-      transform: rotate(5deg) scale(1.05);
-    }
-
-    header.menu-bar .menu-label {
-      color: white;
-      font-size: 1.1rem;
-      margin-left: 1rem;
-      flex-grow: 1;
-      text-align: center;
-    }
-
-    .menu-toggle {
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .menu-toggle:hover {
-      transform: scale(1.1);
-    }
-
-    .menu-toggle:focus {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }
-
-    nav.sidebar {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 250px;
-      height: 100%;
-      background: var(--secondary);
-      color: white;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 999;
-      transition: left 1s ease, opacity 1s ease, transform 1s ease;
-      opacity: 0;
-      transform: scale(0.95);
-    }
-
-    nav.sidebar.active {
-      left: 0;
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    nav.sidebar button {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      text-align: left;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateX(-20px);
-      animation: slideIn 0.4s ease forwards;
-    }
-
-    nav.sidebar button:focus {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }
-
-    nav.sidebar.active button:nth-child(1) { animation-delay: 0.1s; }
-    nav.sidebar.active button:nth-child(2) { animation-delay: 0.2s; }
-    nav.sidebar.active button:nth-child(3) { animation-delay: 0.3s; }
-    nav.sidebar.active button:nth-child(4) { animation-delay: 0.4s; }
-    nav.sidebar.active button:nth-child(5) { animation-delay: 0.5s; }
-
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem;
-      margin-top: 1rem;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: var(--footer);
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      z-index: 1000;
-    }
-
-    .social-links {
-      margin-top: 0.5rem;
-      display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      z-index: 1001;
     }
 
-    .social-links a {
-      color: var(--social);
+    .header-content {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .header-content .icon-left {
+      position: absolute;
+      left: 20px;
+      font-size: 1.5em;
+      color: #4CAF50;
+    }
+
+    .hamburger {
+      position: absolute;
+      right: 20px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #333;
+      z-index: 1002;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 60px;
+      left: -220px;
+      width: 200px;
+      height: 100vh;
+      background: #fff;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      padding-top: 20px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: #333;
       text-decoration: none;
-      font-size: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sidebar a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Main content */
+    .main {
+      margin-left: 0;
+      padding: 20px;
+      flex: 1;
+      transition: margin-left 0.3s ease;
+    }
+
+    .collections {
       display: flex;
-      align-items: center;
-      gap: 5px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
     }
 
-    .social-links a:hover {
-      text-decoration: underline;
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 220px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
     }
 
-    .social-links span {
-      color: var(--social);
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
-    @media (min-width: 768px) {
-      header.menu-bar {
-        display: none;
-      }
-
-      nav.sidebar {
-        position: static;
-        height: auto;
-        flex-direction: row;
-        justify-content: center;
-        background: var(--secondary);
-        padding: 0.5rem;
-        left: 0 !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-
-      nav.sidebar button {
-        font-size: 1rem;
-        margin: 0 1rem;
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-      }
+    .product-image {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
     }
 
+    .product-name {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin: 10px 0 5px 0;
+      color: #222;
+    }
+
+    .product-desc {
+      font-size: 0.9em;
+      color: #555;
+      min-height: 40px;
+    }
+
+    /* WhatsApp floating button */
     .whatsapp-float {
       position: fixed;
-      top: 75%;
-      right: 0;
-      transform: translateY(-50%);
-      background-color: #25d366;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
       color: white;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       display: flex;
       justify-content: center;
       align-items: center;
-      text-decoration: none;
+      font-size: 24px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
-      z-index: 10000;
+      z-index: 1000;
     }
 
     .whatsapp-float:hover {
-      background-color: #1ebe57;
+      background-color: #20b358;
     }
 
-    .whatsapp-float i {
-      font-size: 24px;
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #fff;
+      border-top: 1px solid #eee;
     }
 
-    .responsive-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    .social-icons a {
+      margin: 0 10px;
+      font-size: 1.5em;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #000;
+    }
+
+    @media (min-width: 768px) {
+      .main.shifted {
+        margin-left: 200px;
+      }
     }
   </style>
 </head>
-<body class="white">
-  <header class="menu-bar" role="banner">
-    <div class="logo">
-      <img src="https://via.placeholder.com/30" alt="Logo" />
-    </div>
-    <div class="menu-label">Menu</div>
-    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
-      <i class="fas fa-bars"></i>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <i class="fas fa-store icon-left"></i>
+      Nos Collections
+      <i class="fas fa-bars hamburger" id="hamburgerBtn"></i>
     </div>
   </header>
 
-  <nav class="sidebar" id="mobileMenu" aria-label="Mobile navigation">
-  <br>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/MainPage')" aria-label="Navigate to Home">Home</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/AboutUs')" aria-label="Navigate to About">About</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/ContactUs')" aria-label="Navigate to Contact">Contact</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Services')" aria-label="Navigate to Services">Services</button>
-    <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/Equipe')" aria-label="Navigate to Support">Equipe</button>
-  </nav>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="#">Accueil</a>
+    <a href="#">Habillement</a>
+    <a href="#">Électronique</a>
+    <a href="#">Contact</a>
+  </div>
 
-  <main role="main">
-    <section class="container">
-      <img
-        src="https://help.ui.com/hc/article_attachments/1500020265401/protect.network.topology.graphic.png"
-        alt="Ubiquiti Network Topology Graphic"
-        class="responsive-img"
-        loading="lazy"
-      />
-      <img
-        src="https://www.antennadirect.com.au/wp-content/uploads/2022/10/Starlink-ethernet-adapter.png"
-        alt="Starlink Ethernet Adapter"
-        class="responsive-img"
-        loading="lazy"
-      />
-      <img
-        src="https://512pixels.net/wp-content/uploads/2025/01/Unifi-Network-2025-01.jpg"
-        alt="Unifi Network Overview"
-        class="responsive-img"
-        loading="lazy"
-      />
-    </section>
-  </main>
+  <!-- Main Content -->
+  <div class="main" id="mainContent">
+    <div class="collections">
+      <div class="product-card">
+        <a href="https://glswifi.github.io/kinfood/Clothing">
+          <img class="product-image" src="https://i.imgur.com/Tiodx4b.jpg" alt="Clothing Collection" />
+        </a>
+        <div class="product-name">Habillement</div>
+        <div class="product-desc">Les événements les plus formels, costume de ville trois pièces avec une chemise unie et une cravate.</div>
+      </div>
 
-  <footer role="contentinfo">
-    <p>&copy; 2025 My Website</p>
-    <div class="social-links">
-      <a href="https://www.facebook.com/glssmarthome" target="_blank" rel="noopener">
-        <i class="fab fa-facebook"></i> Facebook
-      </a>
-      <span>|</span>
-      <a href="https://www.tiktok.com" target="_blank" rel="noopener">
-        <i class="fab fa-tiktok"></i> TikTok
-      </a>
-      <span>|</span>
-      <a href="https://www.instagram.com/gls.smarthome2022/" target="_blank" rel="noopener">
-        <i class="fab fa-instagram"></i> Instagram
-      </a>
+      <div class="product-card">
+        <a href="https://glswifi.github.io/kinfood/Electronic">
+          <img class="product-image" src="https://imgur.com/yZoXKyX.jpg" alt="Electronic Devices" />
+        </a>
+        <div class="product-name">Appareils électroniques</div>
+        <div class="product-desc">Appareils de l'électronique de loisirs (télévision, lecteur DVD, appareil photo, ordinateur, téléphone, photocopieur, projecteur…)</div>
+      </div>
     </div>
-  </footer>
+  </div>
 
-  <a
-    href="https://wa.me/1234567890"
-    target="_blank"
-    rel="noopener"
-    class="whatsapp-float"
-    aria-label="Chat on WhatsApp"
-  >
+  <!-- WhatsApp Button -->
+  <a class="whatsapp-float" href="https://wa.me/1234567890" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p>&copy; 2025 Nos Collections. Tous droits réservés.</p>
+  </footer>
+
+  <!-- JavaScript for sidebar toggle -->
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById("mobileMenu");
-      const toggle = document.querySelector(".menu-toggle");
-      menu.classList.toggle("active");
-      toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
-    }
+    const sidebar = document.getElementById('sidebar');
+    const hamburger = document.getElementById('hamburgerBtn');
+    const main = document.getElementById('mainContent');
 
-    function navigateTo(link) {
-      document.getElementById("mobileMenu").classList.remove("active");
-      setTimeout(() => {
-        window.location.href = link;
-      }, 300);
-    }
-
-    document.addEventListener('click', function(event) {
-      const sidebar = document.getElementById("mobileMenu");
-      const toggle = document.querySelector(".menu-toggle");
-      const clickedInsideSidebar = sidebar.contains(event.target);
-      const clickedToggle = toggle.contains(event.target);
-      if (!clickedInsideSidebar && !clickedToggle && sidebar.classList.contains("active")) {
-        sidebar.classList.remove("active");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
-
-    document.querySelector('.menu-toggle').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMenu();
-      }
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      main.classList.toggle('shifted');
     });
   </script>
 </body>
