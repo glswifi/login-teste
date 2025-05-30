@@ -21,31 +21,32 @@
       --footer: #1e88e5;
       --social: #ffffff;
     }
-    html, body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #121212;
     }
 
     body {
-      display: flex;
-      flex-direction: column;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #121212;
+      transition: background-color 0.3s, color 0.3s;
+      padding-top: 60px;
+      padding-bottom: 80px; /* space for fixed footer */
     }
 
     header.menu-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--secondary);
-      padding: 0 1rem;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       z-index: 1000;
     }
 
@@ -97,7 +98,7 @@
       flex-direction: column;
       gap: 1rem;
       z-index: 999;
-      transition: left 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+      transition: left 1s ease, opacity 1s ease, transform 1s ease;
       opacity: 0;
       transform: scale(0.95);
     }
@@ -120,6 +121,11 @@
       animation: slideIn 0.4s ease forwards;
     }
 
+    nav.sidebar button:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
     nav.sidebar.active button:nth-child(1) { animation-delay: 0.1s; }
     nav.sidebar.active button:nth-child(2) { animation-delay: 0.2s; }
     nav.sidebar.active button:nth-child(3) { animation-delay: 0.3s; }
@@ -133,40 +139,34 @@
       }
     }
 
-    main {
-      flex: 1 0 auto;
-      padding: 70px 1rem 80px; /* top padding for fixed header, bottom for footer */
-      overflow-y: auto;
-    }
-
     .container {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      padding: 1rem;
+      margin-top: 1rem;
     }
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--footer);
-  color: white;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
-  text-align: center;
-  z-index: 1000;
-}
 
-.social-links {
-  margin-top: 0.25rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  font-size: 0.8rem;
-}
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--footer);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      z-index: 1000;
+    }
 
+    .social-links {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
     .social-links a {
       color: var(--social);
@@ -189,6 +189,7 @@ footer {
       header.menu-bar {
         display: none;
       }
+
       nav.sidebar {
         position: static;
         height: auto;
@@ -200,6 +201,7 @@ footer {
         opacity: 1 !important;
         transform: none !important;
       }
+
       nav.sidebar button {
         font-size: 1rem;
         margin: 0 1rem;
@@ -242,28 +244,6 @@ footer {
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
-
-    .contact-form input,
-    .contact-form textarea,
-    .contact-form button {
-      display: block;
-      width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      font-size: 1rem;
-    }
-
-    .contact-form button {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .contact-form button:hover {
-      background-color: var(--secondary);
-    }
   </style>
 </head>
 <body class="white">
@@ -278,6 +258,7 @@ footer {
   </header>
 
   <nav class="sidebar" id="mobileMenu" aria-label="Mobile navigation">
+  <br>
     <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/MainPage')" aria-label="Navigate to Home">Home</button>
     <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/AboutUs')" aria-label="Navigate to About">About</button>
     <button onclick="navigateTo('https://glswifi.github.io/wifi-kin/ContactUs')" aria-label="Navigate to Contact">Contact</button>
@@ -286,23 +267,25 @@ footer {
   </nav>
 
   <main role="main">
-    <section class="container contact-section">
-      <h2>Contact Us</h2>
-      <p>If you have any questions or would like more information about our services, feel free to reach out to us!</p>
-      <div class="contact-details">
-        <p><i class="fas fa-envelope"></i> <a href="mailto:support@glssmarthome.com">support@glssmarthome.com</a></p>
-        <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 234 567 890</a></p>
-        <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/1234567890" target="_blank">Chat on WhatsApp</a></p>
-        <p><i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Smart City, SC 45678</p>
-      </div>
-
-      <h3>Send Us a Message</h3>
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
+    <section class="container">
+      <img
+        src="https://imgur.com/WVUPWHK.jpg"
+        alt="Ubiquiti Network Topology Graphic"
+        class="responsive-img"
+        loading="lazy"
+      />
+      <img
+        src="https://www.antennadirect.com.au/wp-content/uploads/2022/10/Starlink-ethernet-adapter.png"
+        alt="Starlink Ethernet Adapter"
+        class="responsive-img"
+        loading="lazy"
+      />
+      <img
+        src="https://512pixels.net/wp-content/uploads/2025/01/Unifi-Network-2025-01.jpg"
+        alt="Unifi Network Overview"
+        class="responsive-img"
+        loading="lazy"
+      />
     </section>
   </main>
 
@@ -351,11 +334,11 @@ footer {
     document.addEventListener('click', function(event) {
       const sidebar = document.getElementById("mobileMenu");
       const toggle = document.querySelector(".menu-toggle");
-      if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
-        if (sidebar.classList.contains("active")) {
-          sidebar.classList.remove("active");
-          toggle.setAttribute("aria-expanded", "false");
-        }
+      const clickedInsideSidebar = sidebar.contains(event.target);
+      const clickedToggle = toggle.contains(event.target);
+      if (!clickedInsideSidebar && !clickedToggle && sidebar.classList.contains("active")) {
+        sidebar.classList.remove("active");
+        toggle.setAttribute("aria-expanded", "false");
       }
     });
 
